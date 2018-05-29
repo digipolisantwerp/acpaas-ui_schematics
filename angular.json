@@ -3,6 +3,7 @@
 	"projects": {
 		"testproject": {
 			"root": "",
+			"sourceRoot": "src",
 			"prefix": "tp"
 		}
 	}
