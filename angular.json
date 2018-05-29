@@ -1,0 +1,9 @@
+{
+	"newProjectRoot": "packages",
+	"projects": {
+		"testproject": {
+			"root": "",
+			"prefix": "tp"
+		}
+	}
+}
