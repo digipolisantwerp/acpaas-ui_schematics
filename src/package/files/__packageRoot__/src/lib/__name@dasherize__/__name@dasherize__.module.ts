@@ -28,6 +28,6 @@ import { Services } from './services';
 		Pipes,
 	],
 })
-export class <% classify(name) %>Module {
+export class <%= classify(name) %>Module {
 
 }

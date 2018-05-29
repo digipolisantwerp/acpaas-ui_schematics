@@ -1,3 +1,3 @@
-export interface <% classify(name) %>Data {
+export interface <%= classify(name) %>Data {
 
 }

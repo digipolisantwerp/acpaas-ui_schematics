@@ -1,1 +1,1 @@
-export * from './lib/<% dasherize(name) %>/index';
+export * from './lib/<%= dasherize(name) %>/index';
