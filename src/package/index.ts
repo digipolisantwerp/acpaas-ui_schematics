@@ -3,7 +3,7 @@ import {
 	SchematicContext,
 	Tree,
 	chain,
-	// externalSchematic,
+	externalSchematic,
 	template,
 	apply,
 	url,
@@ -19,64 +19,59 @@ import { getWorkspace } from '../utils/workspace';
 import { parseName } from '../utils/name';
 import { buildSelector } from '../utils/selector';
 import { validateName, validateHtmlSelector } from '../utils/validation';
+import { getProjectFromOptions } from '../utils/project';
 
-// You don't have to export the function as default. You can also have more than one rule factory
-// per file.
+const cleanupGeneratedLib = (options: any): Rule => {
+	return (tree: Tree, _context: SchematicContext) => {
+		const workspace = getWorkspace(tree);
+		const project = getProjectFromOptions(workspace, options);
+
+		tree.getDir(project.packageRoot)
+          .visit(filePath => {
+			console.log(filePath);
+
+		  });
+
+		// tree.delete(`${project.packageRoot}/src/public_api.ts`);
+
+		return tree;
+	};
+};
+
+const generatePackage = (options: any): Rule => {
+	return (tree: Tree, _context: SchematicContext) => {
+		const workspace = getWorkspace(tree);
+		const project = getProjectFromOptions(workspace, options);
+
+		options.name = project.name;
+		options.path = project.path;
+		options.packageRoot = project.packageRoot;
+		options.selector = buildSelector(options, project.prefix);
+
+		validateName(options.name);
+		validateHtmlSelector(options.selector);
+
+		const templateSource = apply(url('./files'), [
+			template({
+				...strings,
+				...options,
+			}),
+			move(project.path),
+		]);
+
+		return chain([
+			branchAndMerge(
+				mergeWith(templateSource, MergeStrategy.Overwrite),
+				MergeStrategy.AllowOverwriteConflict
+			)
+		])(tree, _context);
+	};
+};
+
 export default function acpaasUIPackage(options: any): Rule {
-	// return chain([
-		// externalSchematic('@schematics/angular', 'library', options),
-		return (tree: Tree, _context: SchematicContext) => {
-			const workspace = getWorkspace(tree);
-
-			if (!options.project) {
-				throw new SchematicsException('Option (project) is required.');
-			}
-
-			if (!options.name) {
-				throw new SchematicsException('Option (name) is required.');
-			}
-
-			const project = workspace.projects[options.project];
-			const newProjectRoot = workspace.newProjectRoot;
-
-			let scopeName = null;
-			if (/^@.*\/.*/.test(options.name)) {
-				const [scope, name] = options.name.split('/');
-				scopeName = scope.replace(/^@/, '');
-				options.name = name;
-			}
-
-			const scopeFolder = scopeName ? strings.dasherize(scopeName) + '/' : '';
-			const folderName = `${scopeFolder}${strings.dasherize(options.name)}`;
-			const packageRoot = `${newProjectRoot}/${folderName}`;
-
-			if (options.path === undefined) {
-				options.path = project.root ? `/${project.root}` : '';
-			}
-
-			const parsedPath = parseName(options.path, options.name);
-			options.name = parsedPath.name;
-			options.path = parsedPath.path;
-			options.selector = options.selector || buildSelector(options, project.prefix);
-
-			validateName(options.name);
-			validateHtmlSelector(options.selector);
-
-			const templateSource = apply(url('./files'), [
-				template({
-					...strings,
-					...options,
-					packageRoot,
-				}),
-				move(parsedPath.path),
-			]);
-
-			return chain([
-				branchAndMerge(
-					mergeWith(templateSource, MergeStrategy.Overwrite),
-					MergeStrategy.AllowOverwriteConflict
-				)
-			])(tree, _context);
-		};
-	// ]);
+	return chain([
+		externalSchematic('@schematics/angular', 'library', options),
+		cleanupGeneratedLib(options),
+		generatePackage(options),
+	]);
 }
