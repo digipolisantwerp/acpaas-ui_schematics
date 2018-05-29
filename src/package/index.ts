@@ -51,9 +51,7 @@ export default function acpaasUIPackage(options: any): Rule {
 			const packageRoot = `${newProjectRoot}/${folderName}`;
 
 			if (options.path === undefined) {
-				const projectRoot = project.root ? `/${project.root}` : '';
-
-				options.path = `${projectRoot}/src/lib`;
+				options.path = project.root ? `/${project.root}` : '';
 			}
 
 			const parsedPath = parseName(options.path, options.name);
