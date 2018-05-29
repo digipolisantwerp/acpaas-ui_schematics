@@ -5,10 +5,6 @@ import { getWorkspace } from "./workspace";
 import { parseName } from "./name";
 
 export const getProjectFromOptions = (workspace: any, options: any) => {
-	if (!options.project) {
-		throw new SchematicsException('Option (project) is required.');
-	}
-
 	if (!options.name) {
 		throw new SchematicsException('Option (name) is required.');
 	}
@@ -28,14 +24,14 @@ export const getProjectFromOptions = (workspace: any, options: any) => {
 
 	let path = null;
 	if (options.path === undefined) {
-		path = project.root ? `/${project.root}` : '';
+		path = project && project.root ? `/${project.root}` : '';
 	}
 
 	const parsedPath = parseName(path as string, scopeName || options.name);
 
 	return {
-		root: project.root,
-		prefix: project.prefix,
+		root: path,
+		prefix: project && project.prefix ? project.prefix : 'aui',
 		name: parsedPath.name,
 		path: parsedPath.path,
 		packageRoot,
