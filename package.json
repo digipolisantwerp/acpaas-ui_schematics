@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "dry:p": "schematics .:package --name=p",
-    "debug": "node --inspect-brk $(which schematics) .:package --name=acpaas-ui",
+    "debug": "node --inspect-brk $(which schematics) .:package --name=testpackage --project=testproject",
     "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [
