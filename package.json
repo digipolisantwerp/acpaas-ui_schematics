@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "A blank schematics",
   "scripts": {
+	"prepare": "npm run build",
     "build": "tsc -p tsconfig.json",
     "dry:p": "schematics .:package --name=p",
     "debug": "node --inspect-brk $(which schematics) .:package --name=testpackage --project=testproject",
