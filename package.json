@@ -1,6 +1,6 @@
 {
   "name": "@acpaas-ui/schematics",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A blank schematics",
   "scripts": {
     "prepare": "npm run build",
@@ -27,7 +27,7 @@
     "@schematics/angular": "^0.6.5"
   },
   "repository": {
-	  "type": "git",
-	  "url": "https://github.com/tom-odb/acpaas-ui-schematics"
+    "type": "git",
+    "url": "https://github.com/tom-odb/acpaas-ui-schematics"
   }
 }
