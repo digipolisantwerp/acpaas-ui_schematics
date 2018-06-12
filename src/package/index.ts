@@ -47,6 +47,12 @@ const generatePackage = (options: any): Rule => {
 			selector: buildSelector(options, project.prefix),
 		};
 
+		templateOptions.packageName = project.name;
+		templateOptions.distRoot = `dist/${project.name}`;
+		templateOptions.relativePathToWorkspaceRoot = '../..';
+		templateOptions.entryFile = 'index';
+		templateOptions.prefix = project.prefix;
+
 		validateName(templateOptions.name);
 		validateHtmlSelector(templateOptions.selector);
 
@@ -129,6 +135,9 @@ const addProjectToWorkspace = (options: any): Rule => {
 						project: `${project.packageRoot}/ng-package.json`,
 					},
 					configurations: {
+						examples: {
+							project: `${project.packageRoot}/ng-package.examples.json`,
+						},
 						production: {
 							project: `${project.packageRoot}/ng-package.prod.json`,
 						},
