@@ -88,7 +88,7 @@ See the [angular schematics](https://github.com/angular/angular-cli/tree/master/
 
 ## [Contribution](#contribution)
 
-Please make sure to read the [Contributing Guide](./.github/CONTRIBUTING.md) before making a pull request.
+Please make sure to read the [Contributing Guide](./CONTRIBUTING.md) before making a pull request.
 
 Thank you to all the people who already contributed to ACPaaS UI!
 

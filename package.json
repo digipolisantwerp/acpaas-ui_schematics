@@ -25,5 +25,9 @@
   },
   "devDependencies": {
     "@schematics/angular": "^0.6.5"
+  },
+  "repository": {
+	  "type": "git",
+	  "url": "https://github.com/tom-odb/acpaas-ui-schematics"
   }
 }
