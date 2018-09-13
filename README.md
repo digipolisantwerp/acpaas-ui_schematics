@@ -28,10 +28,12 @@ yarn add @acpaas-ui/schematics --save-dev
 
 ## [Usage](#usage)
 
-The custom `package` schematic will be available for use with the cli:
+The custom `package` and `example` schematics will be available for use with the cli:
 
 ```shell
 ng g @acpaas-ui/schematics:package --name=<name here>
+
+ng g @acpaas-ui/schematics:example --name=<name here>
 ```
 
 ## Development
