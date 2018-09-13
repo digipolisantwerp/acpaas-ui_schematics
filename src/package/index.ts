@@ -8,13 +8,14 @@ import {
 	apply,
 	url,
 	move,
-	SchematicsException,
+	schematic,
+	// SchematicsException,
 	mergeWith,
 	MergeStrategy,
 	branchAndMerge,
 } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
-import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
+// import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
 
 import { getWorkspace, getWorkspacePath } from '../utils/workspace';
 import { parseName } from '../utils/name';
@@ -179,6 +180,6 @@ export default function acpaasUIPackage(options: any): Rule {
 		addProjectToWorkspace(options), // TODO: remove once https://github.com/angular/devkit/issues/475 is resolved
 		generateLibrary(options), // TODO: remove once https://github.com/angular/devkit/issues/475 is resolved
 		generatePackage(options),
+		schematic('example', options),
 	]);
 }
-
