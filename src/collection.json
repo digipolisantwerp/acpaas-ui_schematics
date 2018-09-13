@@ -7,6 +7,10 @@
     "package": {
       "description": "Custom package schematic for ACPaaS UI.",
 	  "factory": "./package"
-    }
+	},
+	"example": {
+		"description": "Generate example for an existing package.",
+		"factory": "./example"
+	}
   }
 }
