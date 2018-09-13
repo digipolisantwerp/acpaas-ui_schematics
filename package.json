@@ -1,6 +1,6 @@
 {
   "name": "@acpaas-ui/schematics",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A blank schematics",
   "scripts": {
     "prepare": "npm run build",
