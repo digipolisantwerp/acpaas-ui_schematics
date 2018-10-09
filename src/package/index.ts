@@ -18,22 +18,22 @@ import { strings } from '@angular-devkit/core';
 // import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
 
 import { getWorkspace, getWorkspacePath } from '../utils/workspace';
-import { parseName } from '../utils/name';
+// import { parseName } from '../utils/name';
 import { buildSelector } from '../utils/selector';
 import { validateName, validateHtmlSelector } from '../utils/validation';
 import { getProjectFromOptions } from '../utils/project';
 
-const cleanupGeneratedLib = (options: any): Rule => {
-	return (tree: Tree, _context: SchematicContext) => {
-		const workspace = getWorkspace(tree);
-		const project = getProjectFromOptions(workspace, options);
+// const cleanupGeneratedLib = (options: any): Rule => {
+// 	return (tree: Tree, _context: SchematicContext) => {
+// 		const workspace = getWorkspace(tree);
+// 		const project = getProjectFromOptions(workspace, options);
 
-		tree.delete(`${project.packageRoot}/src/public_api.ts`);
-		// TODO: remove generated files
+// 		tree.delete(`${project.packageRoot}/src/public_api.ts`);
+// 		// TODO: remove generated files
 
-		return tree;
-	};
-};
+// 		return tree;
+// 	};
+// };
 
 const generatePackage = (options: any): Rule => {
 	return (tree: Tree, _context: SchematicContext) => {

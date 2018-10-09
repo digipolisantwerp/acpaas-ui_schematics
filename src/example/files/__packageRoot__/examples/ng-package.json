@@ -1,0 +1,5 @@
+{
+  "$schema": "../../../ode_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../examples/<%= dasherize(name) %>",
+  "deleteDestPath": true
+}

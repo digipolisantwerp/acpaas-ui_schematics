@@ -71,7 +71,8 @@ const addProjectToWorkspace = (options: any): Rule => {
 		setPath(['projects', project.name, 'architect', 'build', 'configurations'], {
 			...getPath(['projects', project.name, 'architect', 'build', 'configurations'], workspace),
 			examples: {
-				project: `${project.packageRoot}/ng-package.examples.json`,
+				project: `${project.packageRoot}/examples/ng-package.json`,
+				tsConfig: `${project.packageRoot}/examples/tsconfig.json`,
 			},
 		}, workspace);
 
