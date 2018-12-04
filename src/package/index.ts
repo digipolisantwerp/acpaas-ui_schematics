@@ -132,32 +132,30 @@ const addProjectToWorkspace = (options: any): Rule => {
 				build: {
 					builder: "@angular-devkit/build-ng-packagr:build",
 					options: {
-						tsConfig: `${project.packageRoot}/tsconfig.lib.json`,
-						project: `${project.packageRoot}/ng-package.json`,
+						tsConfig: `${project.packageRoot}/lib/tsconfig.lib.json`,
+						project: `${project.packageRoot}/lib/ng-package.json`,
 					},
 					configurations: {
 						examples: {
-							project: `${project.packageRoot}/ng-package.examples.json`,
-						},
-						production: {
-							project: `${project.packageRoot}/ng-package.prod.json`,
-						},
+							project: `${project.packageRoot}/examples/ng-package.json`,
+              				tsConfig: `${project.packageRoot}/examples/tsconfig.json`
+						}
 					},
 				},
 				test: {
 					builder: "@angular-devkit/build-angular:karma",
 					options: {
-						main: `${project.packageRoot}/src/test.ts`,
-						tsConfig: `${project.packageRoot}/tsconfig.spec.json`,
-						karmaConfig: `${project.packageRoot}/karma.conf.js`,
+						main: `${project.packageRoot}/lib/src/test.ts`,
+						tsConfig: `${project.packageRoot}/lib/tsconfig.spec.json`,
+						karmaConfig: `${project.packageRoot}/lib/karma.conf.js`,
 					},
 				},
 				lint: {
 					builder: "@angular-devkit/build-angular:tslint",
 					options: {
 						tsConfig: [
-							`${project.packageRoot}/tsconfig.lib.json`,
-							`${project.packageRoot}/tsconfig.spec.json`,
+							`${project.packageRoot}/lib/tsconfig.lib.json`,
+							`${project.packageRoot}/lib/tsconfig.spec.json`,
 						],
 						exclude: [
 							"**/node_modules/**",
