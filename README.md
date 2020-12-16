@@ -94,6 +94,10 @@ Please make sure to read the [Contributing Guide](./CONTRIBUTING.md) before maki
 
 Thank you to all the people who already contributed to ACPaaS UI!
 
+## Support
+
+Jasper Van Proeyen (<jasper.vanproeyen@digipolis.be>)
+
 ## [License](#license)
 
 [MIT](http://opensource.org/licenses/MIT)
